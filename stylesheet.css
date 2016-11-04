@@ -1,0 +1,57 @@
+.well-image {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: relative;
+}
+
+.name:hover {
+    cursor: pointer;
+}
+
+.glyphicon-remove-circle {
+    cursor: pointer;
+}
+
+.glyphicon-list-alt {
+    cursor: pointer;
+}
+
+.inputBox {
+    bottom: 0;
+    left: 10px;
+}
+
+.postBtn {
+    bottom: 0;
+}
+
+.imagePost {
+    height: 330px;
+    margin-left: 7%;
+    margin-top: -45px;
+    border: 1px solid black;
+}
+
+.bottom-right {
+    bottom: 0;
+}
+
+.bottom-left {
+}
+
+.messagePost {
+    height: 330px;
+    width: 330px;
+    margin-left: 7%;
+    background: white;
+    border: 1px solid black;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: -20px;
+}
+
+.userComment {
+    margin-left: 15px;
+    
+}

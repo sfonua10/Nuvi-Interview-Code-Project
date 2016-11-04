@@ -1,0 +1,137 @@
+<div>
+    <h1 class="text-center">Nuvi Interview Code Project</h1>
+
+
+    <p class="instructions" data-toggle="modal" data-target="#instructions" ng-click="displayInst()">
+        <span class="glyphicon glyphicon-list-alt"> Instructions</span>
+    </p>
+
+    <div class="modal" id="instructions">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="row">
+                    <h5 class="text-center">Type "twitter", "facebook", or "tumblr" to populate provider to top.
+                    <br>You can also search for a specific user by typing in the name of user.
+                    <br>Click on the name to see more information about a particular user.
+                    <br>Don't forget to post a comment and like or unlike a particular post.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="form-inline well well-sm clearfix">
+        <span class="glyphicon glyphicon-search"></span>
+        <input type="text" placeholder="Search" class="form-control" ng-model="search">
+        <a href="#/data">
+            <button class="btn btn-warning pull-right">Data</button>
+        </a>
+    </form>
+    
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2" ng-repeat="actor in data | filter:search">
+            <div class="well well-sm">
+
+                <div class="row top-row">
+                    <div class="col-md-6">
+                        <img ng-src="{{actor.actor_avator}}" class="img-rounded img-responsive well-image pull-left">
+
+                        <h3 class="name" data-toggle="modal" data-target="#actor-info" ng-click="changeActiveActor(actor)">{{actor.actor_name}}</h3>
+                        <hr>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="pull-right"><strong>{{actor.provider}} </strong></p>
+                        <p class="text-center"><strong>Post</strong></p>
+                    </div>
+                </div>
+                <div class="row middle-row">
+                    <div class="col-md-6">
+                       <h5>Comments</h5>
+                        <p class="userComment" ng-repeat="say in actor.comments track by $index">{{say}}
+                            <span class="glyphicon glyphicon-remove-circle pull-right" ng-click="removeComment(actor.id, $index)"></span>
+                        </p>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <h4 ng-if="actor.activity_message.indexOf('http') > -1">
+                             <img ng-src="{{actor.activity_message}}" class="img-rounded img-responsive imagePost">
+                            </h4>
+
+                        <h4 ng-if="actor.activity_message.indexOf('http') === -1" class="text-center messagePost">{{actor.activity_message}}
+                           </h4>
+                        <p class="text-center"><strong>Post Date: </strong>{{actor.activity_date}}</p>
+
+                        <br>
+
+                    </div>
+                </div>
+                <div class="row bottom-row">
+                    <div class="col-md-6">
+                        <div class="bottom-left">
+                            <input type="text" class="form-control inputBox" placeholder="Write a comment..." ng-model="comment">
+                            <button class="btn btn-primary postBtn" ng-click="postComment($index, comment); comment = ''">
+                                <span class="glyphicon glyphicon-send"></span> Post Comment
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center bottom-right">
+                            <div>{{actor.activity_comments}} Comments {{actor.activity_likes}} likes {{actor.activity_shares}} shares</div>
+
+                            <button ng-click="countUp($index)" type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                            </button>
+                            <button ng-click="countDown($index)" type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-thumbs-down"></span> Unlike
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="actor-info">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>{{activeActor.actor_name}}</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <img ng-src="{{activeActor.actor_avator}}" class="img-rounded img-responsive">
+                    </div>
+                </div>
+                <div class="row top-buffer">
+                    <div class="col-md-6">
+                        <p><strong>Message: </strong> {{activeActor.activity_message}}</p>
+                        <p><strong>Username:</strong> {{activeActor.actor_username}}</p>
+                        <p><strong>Date:</strong> {{activeActor.activity_date}}</p>
+                        <p><strong>Comment:</strong> {{activeActor.activity_comments}}</p>
+                        <p><strong>Likes:</strong> {{activeActor.activity_likes}}</p>
+                        <p><strong>Sentiment:</strong> {{activeActor.activity_sentiment}}</p>
+                        <p><strong>Shares:</strong> {{activeActor.activity_shares}}</p>
+                        <p><strong>ID:</strong> {{activeActor.id}}</p>
+                        <p><strong>Provider:</strong> {{activeActor.provider}}</p>
+                    </div>
+                    <div class="col-xs-12">
+                        <p></p>
+                        <button class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF MODAL -->
+
+
+
+<hr>
+<h6 class="pull-right">Coded by Saia Fonua</h6>
+
+</div>

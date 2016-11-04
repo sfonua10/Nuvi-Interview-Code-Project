@@ -1,0 +1,54 @@
+<div ng-controller="DataController">
+    <h1 class="text-center">{{message}}</h1>
+    <p class="instructions" data-toggle="modal" data-target="#instructions" ng-click="displayInst()">
+        <span class="glyphicon glyphicon-list-alt"></span>
+    </p> <p>Instructions</p>
+    
+    <div class="modal" id="instructions">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="row">
+                    <h5 class="text-center">Type "twitter", "facebook", or "tumblr" to display specific provider.
+                    <br>You can also search for a specific user by typing in the name of user.
+                    <br>Click on the name to see more information about a particular user.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <form class="form-inline well well-sm clearfix">
+        <span class="glyphicon glyphicon-search"></span>
+        <input type="text" placeholder="Search" class="form-control" ng-model="search">
+        <a href="#/">
+               <button class="btn btn-success pull-right">Back Home</button> 
+            </a>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Provider</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>id</th>
+                <th>Likes</th>
+                <th>Comments</th>
+                <th>Shares</th>
+                <th>Sentiment</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="actor in providerData | filter:search">
+                <td>{{actor.provider}}</td>
+                <td>{{actor.actor_name}}</td>
+                <td>{{actor.actor_username}}</td>
+                <td>{{actor.id}}</td>
+                <td>{{actor.activity_likes}}</td>
+                <td>{{actor.activity_comments}}</td>
+                <td>{{actor.activity_shares}}</td>
+                <td>{{actor.activity_sentiment}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
